@@ -1,0 +1,38 @@
+{
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    // "editor.formatOnSave": true,
+    "workbench.tree.indent": 16,
+    "python.terminal.activateEnvironment": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "terminal.integrated.cursorStyle": "underline",
+    // isort
+    "files.insertFinalNewline": true,
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    //"python.formatting.provider": "black",
+    // https://stackoverflow.com/questions/63640823/vscode-python-shifting-code-to-a-new-line-keeps-all-the-white-spaces-of-previou
+    // автоматическое добавление новой строки в конце файла
+    // форматирование html (2 пробела отступы и др)
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify",
+        "editor.formatOnSave": true,
+    },
+    "editor.rulers": [
+    79
+    ],
+    "python.testing.promptToConfigure": false
+}
