@@ -7,14 +7,21 @@ kbd = {
     '7': 'pqrs','8': 'tuv', '9': 'wxyz'
 }
 
-def generator(numbers, txt):
-    pass
+
+def generator(numbers, collection, txt='', idx=0):
+    if idx == len(numbers):
+        collection.append(txt)
+        return
+    seq = kbd[numbers[idx]]
+    for ch in seq:
+        generator(numbers, collection, txt + ch, idx + 1)
 
 
 def main():
-    generator('2 3'.split(), '')
+    collection = []
+    generator(input(), collection)
+    print(*collection)
 
 
 if __name__ == '__main__':
     main()
-    # 23 ad ae af bd be bf cd ce cf
