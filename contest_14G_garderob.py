@@ -21,6 +21,6 @@ def main():
 
 
 if __name__ == '__main__':
-    print(*sorted_gard('2 1 1 2 0 2'))
-    print(*sorted_gard('0 2 1 2 0 0 1'))
+    # print(*sorted_gard('2 1 1 2 0 2'))
+    # print(*sorted_gard('0 2 1 2 0 0 1'))
     main()
