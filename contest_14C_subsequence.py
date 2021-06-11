@@ -5,13 +5,12 @@ def search(sub, text):
     k = 0
     i = 0
     while k < len(text):
-
         if i == len(sub):
             return True
         if text[k] == sub[i]:
             i += 1
         k += 1
-    return i == len(sub)  # возможно тут надо как во втором варианте
+    return i == len(sub)
 
 
 def search2(sub, text):
