@@ -1,56 +1,39 @@
-def merge_sort(array):
-    if len(array) == 1:
-        return array
-
-    left = merge_sort(array[0:len(array)//2])
-    right = merge_sort(array[len(array)//2:len(array)])
-    l, r, k = 0, 0, 0
-    result = [None] * len(array)
-
-    while l < len(left) and r < len(right):
-        # print(k, l, r)
-        if left[l] <= right[r]:
-            result[k] = left[l]
-            l += 1
-        else:
-            result[k] = right[r]
-            r += 1
-        k += 1
-
-    while l < len(left):
-        result[k] = left[l]
-        l += 1
-        k += 1
-
-    while r < len(right):
-        result[k] = right[r]
-        r += 1
-        k += 1
-    return result
-
-def search(sub_seq, text):
-    if len(sub_seq) > len(text):
+def search(sub, text):
+    """ поиск вперед """
+    if len(sub) > len(text):
         return False
-
     k = 0
     i = 0
-    
     while k < len(text):
-        if i == len(sub_seq) - 1:
+
+        if i == len(sub):
             return True
-        if text[k] == sub_seq[i]:
+        if text[k] == sub[i]:
             i += 1
         k += 1
-    return False
+    return i == len(sub)  # возможно тут надо как во втором варианте
+
+
+def search2(sub, text):
+    """ поиск назад """
+    if sub == '':
+        return True
+    i = len(sub) - 1
+    for c in text[::-1]:
+        if i < 0:
+            return True
+        if c == sub[i]:
+            i -= 1
+    return i < 0
 
 
 def main():
+    assert search('abc', 'ahbgdcu') == True
     assert search('abcp', 'ahpc') == False
     assert search('islx','yoytgtshldmogkdburkbcfvoapepjpcuwemusfkfztrzxstytrnarlizjhuoscuzlraezlaweipuuqdgvhwkhhoufexojaps') == True
+    assert search('6','ggzj') == False
     sub_seq = input()
     text = input()
-
-    print(search(sub_seq, text))
 
 if __name__ == '__main__':
     main()
