@@ -1,7 +1,12 @@
+# Спринт 14
+# B. Эффективная быстрая сортировка
+# ID: 51984399
+
 from random import randint
 
 
 def gte(a, b):
+    """ Сравнение участников True если a > b """
     login_a, p_a, f_a = a
     login_b, p_b, f_b = b
 
@@ -12,6 +17,7 @@ def gte(a, b):
 
 
 def lte(a, b):
+    """ Сравнение участников True если a < b """
     return not gte(a, b)
 
 
@@ -55,16 +61,16 @@ class QuickSort():
 
 
 def main():
-    pass
+    n = int(input())
+    arr = []
+    for _ in range(n):
+        login, p, f = input().split()
+        arr.append((login, int(p), int(f)))
+    q = QuickSort(gte_func=gte, lte_func=lte, reverse=True)
+    q.sort(arr)
+    for user in arr:
+        print(user[0])
 
 
 if __name__ == '__main__':
     main()
-
-# """5
-# alla 4 100
-# gena 6 1000
-# gosha 2 90
-# rita 2 90
-# timofey 4 80
-# """

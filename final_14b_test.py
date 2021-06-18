@@ -1,8 +1,12 @@
 import unittest
+from io import StringIO
 from random import randint
+from typing import Callable, List
 from unittest import TestCase
+from unittest.mock import patch
 
-from final_14b import QuickSort, gte, lte
+from final_14b import QuickSort, gte, lte, main
+from final_14b_test_data import tests as test_data
 
 
 class TestQuickSort(TestCase):
@@ -64,6 +68,31 @@ class TestQuickSort(TestCase):
         q.sort(test)
         answer = [t[0] for t in test]
         self.assertEqual(answer, ['gena', 'timofey', 'alla', 'gosha', 'rita'])
+
+    def _get_output(self,
+                    subtest_name: str,
+                    module: str,
+                    side_effect: List[str],
+                    test_func: Callable,
+                    ) -> str:
+        with self.subTest(
+            name=subtest_name,
+        ), patch(
+            f'{module}.input',
+            side_effect=side_effect
+        ), patch(
+            'sys.stdout', new=StringIO()
+        ) as fake_out:
+            test_func()
+            return fake_out.getvalue()
+
+    def test_main(self):
+        for name, data, result in test_data:
+            output = self._get_output(name,
+                                      'final_14b',
+                                      data.split('\n'),
+                                      main)
+            self.assertEqual(output, result)
 
 
 if __name__ == '__main__':
