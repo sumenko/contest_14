@@ -1,6 +1,20 @@
 from random import expovariate, randint, randrange
 
 
+def gte(a, b):
+    login_a, p_a, f_a = a
+    login_b, p_b, f_b = b
+    print(login_a, login_b)
+    if (p_a > p_b or  (p_a == p_b and f_a < f_b) or
+        (p_a == p_b and f_a == f_b and login_a < login_b)):
+        return True
+    return False
+
+
+def lte(a, b):
+    return gte(b, a)
+
+
 def print_arr(arr, left, right):
     print(''.join([f'{i:<4}' for i in arr]))
 
@@ -37,25 +51,16 @@ def quick_sort(arr, left=0, right=None):
         quick_sort(arr, l, right)
 
 
-
+def main():
+    pass
 
 if __name__ == '__main__':
-    tests = (
-        [4, 8, 9, 20, 1, 5, 3, 10],
-        [1, 2, 0, 4, 5],
-        [1, 2, 3, 4, 5],
-        [0, 2, 3, 4, 5],
-        [1, 0, 3, 4, 5],
-        [1, 2, 3, 0, 5],
-        [1, 2, 3, 4, 0],
-        [randint(0, 10) for _ in range(10)],
-    )
-    for n, test in enumerate(tests):
-        print('Test #', n)
-        quick_sort(test, 0, len(test) - 1)
-        try:
-            srt = sorted(test)
-            assert test == srt
-        except AssertionError:
-            print(*test, '!=', *srt)
+    main()
         
+# """5
+# alla 4 100
+# gena 6 1000
+# gosha 2 90
+# rita 2 90
+# timofey 4 80
+# """
