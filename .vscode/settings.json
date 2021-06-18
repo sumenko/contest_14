@@ -14,7 +14,7 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": true,
+    "python.testing.unittestEnabled": false,
     "terminal.integrated.cursorStyle": "underline",
     // isort
     "files.insertFinalNewline": true,
