@@ -65,10 +65,10 @@ class TestQuickSort(TestCase):
             for test in tests:
                 srt = sorted(test)
                 q.sort(test)
-                try:                
+                try:
                     self.assertEqual(test, srt)
                 except AssertionError:
-                    print(test , ' != ', srt)
+                    print(test, ' != ', srt)
 
     def test_sort_with_lte(self):
         test = [

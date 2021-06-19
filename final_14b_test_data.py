@@ -1,4 +1,4 @@
-tests=(
+tests = (
     ('#1', """5
 alla 4 100
 gena 6 1000
