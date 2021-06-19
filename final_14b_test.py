@@ -5,7 +5,7 @@ from typing import Callable, List
 from unittest import TestCase
 from unittest.mock import patch
 
-from final_14b import QuickSort, gte, lte, main
+from final_14b import Member, main, sort
 from final_14b_test_data import tests as test_data
 
 
@@ -21,42 +21,29 @@ class TestQuickSort(TestCase):
             [1, 2, 3, 4, 0],
             [randint(0, 10) for _ in range(10)],
         )
-        q = QuickSort()
-        with self.subTest(gte=gte, lte=lte):
+
+        with self.subTest():
             for test in tests:
                 srt = sorted(test)
-                q.sort(test)
+                sort(test)
                 try:
                     self.assertEqual(test, srt)
                 except AssertionError:
                     print(*test, '!=', *srt)
 
-    def test_gte(self):
-        alla = ('alla', 4, 100)
-        gena = ('gena', 6, 1000)
-        gosha = ('gosha', 2, 90)
-        rita = ('rita', 2, 90)
-        timofey = ('timofey', 4, 80)
+    def test_lt(self):
+        alla = Member('alla', 4, 100)
+        gena = Member('gena', 6, 1000)
+        gosha = Member('gosha', 2, 90)
+        rita = Member('rita', 2, 90)
+        timofey = Member('timofey', 4, 80)
 
-        self.assertTrue(gte(gena, alla))
-        self.assertTrue(gte(timofey, alla))
-        self.assertTrue(gte(gosha, rita))
-        self.assertTrue(gte(timofey, gosha))
-
-    def test_lte(self):
-        alla = ('alla', 4, 100)
-        gena = ('gena', 6, 1000)
-        gosha = ('gosha', 2, 90)
-        rita = ('rita', 2, 90)
-        timofey = ('timofey', 4, 80)
-
-        self.assertFalse(lte(gena, alla))
-        self.assertFalse(lte(timofey, alla))
-        self.assertFalse(lte(gosha, rita))
-        self.assertFalse(lte(timofey, gosha))
+        self.assertTrue(gena > alla)
+        self.assertFalse(gena < alla)
+        self.assertTrue(rita < gosha)
+        self.assertTrue(gosha < timofey)
 
     def test_sort_break_cases(self):
-        q = QuickSort()
         tests = ([1, 1, 1, 1, 1, 1],
                  [1, 2, 1, 1, 1, 1],
                  [2, 2, 1, 1],
@@ -64,24 +51,11 @@ class TestQuickSort(TestCase):
         with self.subTest(msg='strange arrays test'):
             for test in tests:
                 srt = sorted(test)
-                q.sort(test)
+                sort(test)
                 try:
                     self.assertEqual(test, srt)
                 except AssertionError:
                     print(test, ' != ', srt)
-
-    def test_sort_with_lte(self):
-        test = [
-            ('alla', 4, 100),
-            ('gena', 6, 1000),
-            ('gosha', 2, 90),
-            ('rita', 2, 90),
-            ('timofey', 4, 80),
-        ]
-        q = QuickSort(gte, lte, reverse=True)
-        q.sort(test)
-        answer = [t[0] for t in test]
-        self.assertEqual(answer, ['gena', 'timofey', 'alla', 'gosha', 'rita'])
 
     def _get_output(self,
                     subtest_name: str,
