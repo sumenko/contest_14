@@ -23,11 +23,10 @@ class TestQuickSort(TestCase):
         )
         q = QuickSort()
         with self.subTest(gte=gte, lte=lte):
-            for n, test in enumerate(tests):
-                print('Test #', n)
+            for test in tests:
+                srt = sorted(test)
                 q.sort(test)
                 try:
-                    srt = sorted(test)
                     self.assertEqual(test, srt)
                 except AssertionError:
                     print(*test, '!=', *srt)
@@ -55,6 +54,21 @@ class TestQuickSort(TestCase):
         self.assertFalse(lte(timofey, alla))
         self.assertFalse(lte(gosha, rita))
         self.assertFalse(lte(timofey, gosha))
+
+    def test_sort_break_cases(self):
+        q = QuickSort()
+        tests = ([1, 1, 1, 1, 1, 1],
+                 [1, 2, 1, 1, 1, 1],
+                 [2, 2, 1, 1],
+                 [1, 1, 2, 2])
+        with self.subTest(msg='strange arrays test'):
+            for test in tests:
+                srt = sorted(test)
+                q.sort(test)
+                try:                
+                    self.assertEqual(test, srt)
+                except AssertionError:
+                    print(test , ' != ', srt)
 
     def test_sort_with_lte(self):
         test = [
